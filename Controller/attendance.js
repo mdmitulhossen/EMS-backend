@@ -78,4 +78,14 @@ const createAttendance = async(req,res)=>{
     const updateedData = await attendace.updateOne({email:req.body.email},{$set:{attendings: allAtttendence}});
     return res.status(200).json({message:"attendace Successful",updateedData})
   }
-  module.exports={createAttendance,approveAttendence}
+
+  const getAttendance = async(req,res)=>{
+    try{
+      const aaaa = await attendace.find();
+
+      res.status(200).json(aaaa);
+    }catch(err){
+        res.status(500).json({message:"There was a server side error get all employee....!",err});
+    }
+  }
+  module.exports={createAttendance,approveAttendence,getAttendance}
